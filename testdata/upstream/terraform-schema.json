@@ -1,0 +1,3525 @@
+{
+ "format_version": "1.0",
+ "provider_schemas": {
+  "registry.terraform.io/grafana/grafana": {
+   "resource_schemas": {
+    "grafana_contact_point": {
+     "block": {
+      "attributes": {
+       "disable_provenance": {
+        "description": "Allow modifying the contact point from other sources than Terraform or the Grafana API. Defaults to `false`.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "bool"
+       },
+       "id": {
+        "computed": true,
+        "description_kind": "plain",
+        "optional": true,
+        "type": "string"
+       },
+       "name": {
+        "description": "The name of the contact point.",
+        "description_kind": "markdown",
+        "required": true,
+        "type": "string"
+       },
+       "org_id": {
+        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       }
+      },
+      "block_types": {
+       "alertmanager": {
+        "block": {
+         "attributes": {
+          "basic_auth_password": {
+           "description": "The password component of the basic auth credentials to use.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "basic_auth_user": {
+           "description": "The username component of the basic auth credentials to use.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "url": {
+           "description": "The URL of the Alertmanager instance.",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to other Alertmanager instances.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "dingding": {
+        "block": {
+         "attributes": {
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "message": {
+           "description": "The templated content of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "message_type": {
+           "description": "The format of message to send - either 'link' or 'actionCard'",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "title": {
+           "description": "The templated title of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "url": {
+           "description": "The DingDing webhook URL.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to DingDing.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "discord": {
+        "block": {
+         "attributes": {
+          "avatar_url": {
+           "description": "The URL of a custom avatar image to use. Defaults to ``.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "message": {
+           "description": "The templated content of the message. Defaults to ``.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "title": {
+           "description": "The templated content of the title.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "url": {
+           "description": "The discord webhook URL.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "use_discord_username": {
+           "description": "Whether to use the bot account's plain username instead of \"Grafana.\" Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          }
+         },
+         "description": "A contact point that sends notifications as Discord messages",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "email": {
+        "block": {
+         "attributes": {
+          "addresses": {
+           "description": "The addresses to send emails to.",
+           "description_kind": "markdown",
+           "required": true,
+           "type": [
+            "list",
+            "string"
+           ]
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "message": {
+           "description": "The templated content of the email. Defaults to ``.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "single_email": {
+           "description": "Whether to send a single email CC'ing all addresses, rather than a separate email to each address. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "subject": {
+           "description": "The templated subject line of the email. Defaults to ``.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to an email address.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "googlechat": {
+        "block": {
+         "attributes": {
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "hide_open_button": {
+           "description": "Whether to hide the Open URL button in the message. This feature requires Grafana 12.4.0 or later.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "hide_version_info": {
+           "description": "Whether to hide the version info in the message. This feature requires Grafana 12.4.0 or later. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "message": {
+           "description": "The templated content of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "title": {
+           "description": "The templated content of the title.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "url": {
+           "description": "The Google Chat webhook URL.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to Google Chat.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "jira": {
+        "block": {
+         "attributes": {
+          "api_token": {
+           "description": "Personal Access Token that is used as a bearer authorization header.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "api_url": {
+           "description": "The URL of the Jira REST API (v2 or v3).",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          },
+          "dedup_key_field": {
+           "description": "Custom field ID for storing deduplication keys. Must be numeric.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "description": {
+           "description": "The templated description of the Jira issue. Maximum length is 32767 characters.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "fields": {
+           "description": "Custom Jira issue fields.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "issue_type": {
+           "description": "The type of issue to create (e.g., Bug, Task, Story).",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          },
+          "labels": {
+           "description": "Labels to assign to the Jira issue.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": [
+            "list",
+            "string"
+           ]
+          },
+          "password": {
+           "description": "Password to use for Jira authentication.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "priority": {
+           "description": "The priority level of the issue (e.g., High, Medium, Low).",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "project": {
+           "description": "The project key in Jira.",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          },
+          "reopen_duration": {
+           "description": "Duration to consider reopening issues (e.g., '10m').",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "reopen_transition": {
+           "description": "The name of the workflow transition to reopen an issue.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "resolve_transition": {
+           "description": "The name of the workflow transition to resolve an issue.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "summary": {
+           "description": "The templated summary of the Jira issue. Maximum length is 255 characters.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "user": {
+           "description": "Username to use for Jira authentication.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "wont_fix_resolution": {
+           "description": "Resolution status to exclude from reopening/updating.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to Jira.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "kafka": {
+        "block": {
+         "attributes": {
+          "api_version": {
+           "description": "The API version to use when contacting the Kafka REST Server. Supported: v2 (default) and v3. Defaults to `v2`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "cluster_id": {
+           "description": "The Id of cluster to use when contacting the Kafka REST Server. Required api_version to be 'v3'",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "description": {
+           "description": "The templated description of the Kafka message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "details": {
+           "description": "The templated details to include with the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "password": {
+           "description": "The password to use when making a call to the Kafka REST Proxy",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "rest_proxy_url": {
+           "description": "The URL of the Kafka REST proxy to send requests to.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "topic": {
+           "description": "The name of the Kafka topic to publish to.",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "username": {
+           "description": "The user name to use when making a call to the Kafka REST Proxy",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          }
+         },
+         "description": "A contact point that publishes notifications to Apache Kafka topics.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "line": {
+        "block": {
+         "attributes": {
+          "description": {
+           "description": "The templated description of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "title": {
+           "description": "The templated title of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "token": {
+           "description": "The bearer token used to authorize the client.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to LINE.me.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "oncall": {
+        "block": {
+         "attributes": {
+          "authorization_credentials": {
+           "description": "Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "authorization_scheme": {
+           "description": "Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "basic_auth_password": {
+           "description": "The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "basic_auth_user": {
+           "description": "The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "http_method": {
+           "description": "The HTTP method to use in the request. Defaults to `POST`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "max_alerts": {
+           "description": "The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "number"
+          },
+          "message": {
+           "description": "Custom message. You can use template variables.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "title": {
+           "description": "Templated title of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "url": {
+           "description": "The URL to send webhook requests to.",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to Grafana On-Call.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "opsgenie": {
+        "block": {
+         "attributes": {
+          "api_key": {
+           "description": "The OpsGenie API key to use.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "auto_close": {
+           "description": "Whether to auto-close alerts in OpsGenie when they resolve in the Alertmanager.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "description": {
+           "description": "A templated high-level description to use for the alert.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "message": {
+           "description": "The templated content of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "override_priority": {
+           "description": "Whether to allow the alert priority to be configured via the value of the `og_priority` annotation on the alert.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "send_tags_as": {
+           "description": "Whether to send annotations to OpsGenie as Tags, Details, or both. Supported values are `tags`, `details`, `both`, or empty to use the default behavior of Tags.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "url": {
+           "description": "Allows customization of the OpsGenie API URL.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          }
+         },
+         "block_types": {
+          "responders": {
+           "block": {
+            "attributes": {
+             "id": {
+              "description": "ID of the responder. Must be specified if name and username are empty.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             },
+             "name": {
+              "description": "Name of the responder. Must be specified if username and id are empty.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             },
+             "type": {
+              "description": "Type of the responder. Supported: team, teams, user, escalation, schedule or a template that is expanded to one of these values.",
+              "description_kind": "markdown",
+              "required": true,
+              "type": "string"
+             },
+             "username": {
+              "description": "User name of the responder. Must be specified if name and id are empty.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             }
+            },
+            "description": "Teams, users, escalations and schedules that the alert will be routed to send notifications. If the API Key belongs to a team integration, this field will be overwritten with the owner team. This feature is available from Grafana 10.3+.",
+            "description_kind": "markdown"
+           },
+           "nesting_mode": "list"
+          }
+         },
+         "description": "A contact point that sends notifications to OpsGenie.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "pagerduty": {
+        "block": {
+         "attributes": {
+          "class": {
+           "description": "The class or type of event, for example `ping failure`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "client": {
+           "description": "The name of the monitoring client that is triggering this event.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "client_url": {
+           "description": "The URL of the monitoring client that is triggering this event.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "component": {
+           "description": "The component being affected by the event.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "details": {
+           "description": "A set of arbitrary key/value pairs that provide further detail about the incident.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "group": {
+           "description": "The group to which the provided component belongs to.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "integration_key": {
+           "description": "The PagerDuty API key.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "severity": {
+           "description": "The PagerDuty event severity level. Default is `critical`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "source": {
+           "description": "The unique location of the affected system.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "summary": {
+           "description": "The templated summary message of the event.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "url": {
+           "description": "The URL to send API requests to",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to PagerDuty.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "pushover": {
+        "block": {
+         "attributes": {
+          "api_token": {
+           "description": "The Pushover API token.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "device": {
+           "description": "Comma-separated list of devices to which the event is associated.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "expire": {
+           "description": "How many seconds for which the notification will continue to be retried by Pushover.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "number"
+          },
+          "message": {
+           "description": "The templated notification message content.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "ok_priority": {
+           "description": "The priority level of the resolved event.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "number"
+          },
+          "ok_sound": {
+           "description": "The sound associated with the resolved notification.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "priority": {
+           "description": "The priority level of the event.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "number"
+          },
+          "retry": {
+           "description": "How often, in seconds, the Pushover servers will send the same notification to the user.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "number"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "sound": {
+           "description": "The sound associated with the notification.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "title": {
+           "description": "The templated title of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "upload_image": {
+           "description": "Whether to send images in the notification or not. Default is true. Requires Grafana to be configured to send images in notifications.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "user_key": {
+           "description": "The Pushover user key.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to Pushover.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "sensugo": {
+        "block": {
+         "attributes": {
+          "api_key": {
+           "description": "The SensuGo API key.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "check": {
+           "description": "The SensuGo check to which the event should be routed.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "entity": {
+           "description": "The entity being monitored.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "handler": {
+           "description": "A custom handler to execute in addition to the check.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "message": {
+           "description": "Templated message content describing the alert.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "namespace": {
+           "description": "The namespace in which the check resides.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "url": {
+           "description": "The SensuGo URL to send requests to.",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to SensuGo.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "slack": {
+        "block": {
+         "attributes": {
+          "color": {
+           "description": "Templated color of the slack message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "endpoint_url": {
+           "description": "Use this to override the Slack API endpoint URL to send requests to.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "icon_emoji": {
+           "description": "The name of a Slack workspace emoji to use as the bot icon.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "icon_url": {
+           "description": "A URL of an image to use as the bot icon.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "mention_channel": {
+           "description": "Describes how to ping the slack channel that messages are being sent to. Options are `here` for an @here ping, `channel` for @channel, or empty for no ping.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "mention_groups": {
+           "description": "Comma-separated list of groups to mention in the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "mention_users": {
+           "description": "Comma-separated list of users to mention in the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "recipient": {
+           "description": "Channel, private group, or IM channel (can be an encoded ID or a name) to send messages to.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "text": {
+           "description": "Templated content of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "title": {
+           "description": "Templated title of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "token": {
+           "description": "A Slack API token,for sending messages directly without the webhook method.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "url": {
+           "description": "A Slack webhook URL,for sending messages via the webhook method.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "username": {
+           "description": "Username for the bot to use.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to Slack.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "sns": {
+        "block": {
+         "attributes": {
+          "access_key": {
+           "description": "AWS access key ID used to authenticate with Amazon SNS.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "assume_role_arn": {
+           "description": "The Amazon Resource Name (ARN) of the role to assume to send notifications to Amazon SNS.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "auth_provider": {
+           "description": "The authentication provider to use. Valid values are `default`, `arn` and `keys`. Default is `default`. Defaults to `default`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "body": {
+           "description_kind": "plain",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "external_id": {
+           "description": "The external ID to use when assuming the role.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "message_format": {
+           "description": "The format of the message to send. Valid values are `text`, `body` and `json`. Default is `text`. Defaults to `text`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "secret_key": {
+           "description": "AWS secret access key used to authenticate with Amazon SNS.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "subject": {
+           "description_kind": "plain",
+           "optional": true,
+           "type": "string"
+          },
+          "topic": {
+           "description": "The Amazon SNS topic to send notifications to.",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to Amazon SNS. Requires Amazon Managed Grafana.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "teams": {
+        "block": {
+         "attributes": {
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "message": {
+           "description": "The templated message content to send.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "section_title": {
+           "description": "The templated subtitle for each message section.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "title": {
+           "description": "The templated title of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "url": {
+           "description": "A Teams webhook URL.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to Microsoft Teams.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "telegram": {
+        "block": {
+         "attributes": {
+          "chat_id": {
+           "description": "The chat ID to send messages to.",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          },
+          "disable_notifications": {
+           "description": "When set users will receive a notification with no sound.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "disable_web_page_preview": {
+           "description": "When set it disables link previews for links in the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "message": {
+           "description": "The templated content of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "message_thread_id": {
+           "description": "The ID of the message thread to send the message to.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "parse_mode": {
+           "description": "Mode for parsing entities in the message text. Supported: None, Markdown, MarkdownV2, and HTML. HTML is the default.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "protect_content": {
+           "description": "When set it protects the contents of the message from forwarding and saving.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "token": {
+           "description": "The Telegram bot token.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to Telegram.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "threema": {
+        "block": {
+         "attributes": {
+          "api_secret": {
+           "description": "The Threema API key.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "description": {
+           "description": "The templated description of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "gateway_id": {
+           "description": "The Threema gateway ID.",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          },
+          "recipient_id": {
+           "description": "The ID of the recipient of the message.",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "title": {
+           "description": "The templated title of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to Threema.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "victorops": {
+        "block": {
+         "attributes": {
+          "description": {
+           "description": "Templated description of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "message_type": {
+           "description": "The VictorOps alert state - typically either `CRITICAL` or `RECOVERY`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "title": {
+           "description": "Templated title to display.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "url": {
+           "description": "The VictorOps webhook URL.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to VictorOps (now known as Splunk OnCall).",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "webex": {
+        "block": {
+         "attributes": {
+          "api_url": {
+           "description": "The URL to send webhook requests to.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "message": {
+           "description": "The templated title of the message to send.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "room_id": {
+           "description": "ID of the Webex Teams room where to send the messages.",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "token": {
+           "description": "The bearer token used to authorize the client.",
+           "description_kind": "markdown",
+           "required": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to Cisco Webex.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "webhook": {
+        "block": {
+         "attributes": {
+          "authorization_credentials": {
+           "description": "Allows a custom authorization scheme - attaches an auth header with this value. Do not use in conjunction with basic auth parameters.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "authorization_scheme": {
+           "description": "Allows a custom authorization scheme - attaches an auth header with this name. Do not use in conjunction with basic auth parameters.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "basic_auth_password": {
+           "description": "The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "basic_auth_user": {
+           "description": "The username to use in basic auth headers attached to the request. If omitted, basic auth will not be used.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "headers": {
+           "description": "Custom headers to attach to the request.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "http_method": {
+           "description": "The HTTP method to use in the request. Defaults to `POST`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "max_alerts": {
+           "description": "The maximum number of alerts to send in a single request. This can be helpful in limiting the size of the request body. The default is 0, which indicates no limit.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "number"
+          },
+          "message": {
+           "description": "Custom message. You can use template variables.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "title": {
+           "description": "Templated title of the message.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "tls_config": {
+           "description": "Allows configuring TLS for the webhook notifier.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "url": {
+           "description": "The URL to send webhook requests to.",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          }
+         },
+         "block_types": {
+          "hmac_config": {
+           "block": {
+            "attributes": {
+             "header": {
+              "description": "The header in which the HMAC signature will be included. Defaults to `X-Grafana-Alerting-Signature`.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             },
+             "secret": {
+              "description": "The secret key used to generate the HMAC signature.",
+              "description_kind": "markdown",
+              "required": true,
+              "sensitive": true,
+              "type": "string"
+             },
+             "timestamp_header": {
+              "description": "If set, the timestamp will be included in the HMAC signature. The value should be the name of the header to use.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             }
+            },
+            "description": "HMAC signature configuration options.",
+            "description_kind": "markdown"
+           },
+           "max_items": 1,
+           "nesting_mode": "set"
+          },
+          "http_config": {
+           "block": {
+            "block_types": {
+             "oauth2": {
+              "block": {
+               "attributes": {
+                "client_id": {
+                 "description": "Client ID to use when authenticating.",
+                 "description_kind": "markdown",
+                 "required": true,
+                 "type": "string"
+                },
+                "client_secret": {
+                 "description": "Client secret to use when authenticating.",
+                 "description_kind": "markdown",
+                 "required": true,
+                 "sensitive": true,
+                 "type": "string"
+                },
+                "endpoint_params": {
+                 "description": "Optional parameters to append to the access token request.",
+                 "description_kind": "markdown",
+                 "optional": true,
+                 "type": [
+                  "map",
+                  "string"
+                 ]
+                },
+                "scopes": {
+                 "description": "Optional scopes to request when obtaining an access token.",
+                 "description_kind": "markdown",
+                 "optional": true,
+                 "type": [
+                  "list",
+                  "string"
+                 ]
+                },
+                "token_url": {
+                 "description": "URL for the access token endpoint.",
+                 "description_kind": "markdown",
+                 "required": true,
+                 "type": "string"
+                }
+               },
+               "block_types": {
+                "proxy_config": {
+                 "block": {
+                  "attributes": {
+                   "no_proxy": {
+                    "description": "Comma-separated list of addresses that should not use a proxy.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "type": "string"
+                   },
+                   "proxy_connect_header": {
+                    "description": "Optional headers to send to proxies during CONNECT requests.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "type": [
+                     "map",
+                     "string"
+                    ]
+                   },
+                   "proxy_from_environment": {
+                    "description": "Use environment HTTP_PROXY, HTTPS_PROXY and NO_PROXY to determine proxies. Defaults to `false`.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "type": "bool"
+                   },
+                   "proxy_url": {
+                    "description": "HTTP proxy server to use to connect to the targets.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "type": "string"
+                   }
+                  },
+                  "description": "Optional proxy configuration for OAuth2 requests.",
+                  "description_kind": "markdown"
+                 },
+                 "max_items": 1,
+                 "nesting_mode": "set"
+                },
+                "tls_config": {
+                 "block": {
+                  "attributes": {
+                   "ca_certificate": {
+                    "description": "Certificate in PEM format to use when verifying the server's certificate chain.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "sensitive": true,
+                    "type": "string"
+                   },
+                   "client_certificate": {
+                    "description": "Client certificate in PEM format to use when connecting to the server.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "sensitive": true,
+                    "type": "string"
+                   },
+                   "client_key": {
+                    "description": "Client key in PEM format to use when connecting to the server.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "sensitive": true,
+                    "type": "string"
+                   },
+                   "insecure_skip_verify": {
+                    "description": "Do not verify the server's certificate chain and host name. Defaults to `false`.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "type": "bool"
+                   }
+                  },
+                  "description": "Optional TLS configuration options for OAuth2 requests.",
+                  "description_kind": "markdown"
+                 },
+                 "max_items": 1,
+                 "nesting_mode": "set"
+                }
+               },
+               "description": "OAuth2 configuration options.",
+               "description_kind": "markdown"
+              },
+              "max_items": 1,
+              "nesting_mode": "set"
+             }
+            },
+            "description": "Common HTTP client options.",
+            "description_kind": "markdown"
+           },
+           "max_items": 1,
+           "nesting_mode": "set"
+          },
+          "payload": {
+           "block": {
+            "attributes": {
+             "template": {
+              "description": "Custom payload template.",
+              "description_kind": "markdown",
+              "required": true,
+              "type": "string"
+             },
+             "vars": {
+              "description": "Optionally provide a variables to be used in the payload template. They will be available in the template as `.Vars.<variable_name>`.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": [
+               "map",
+               "string"
+              ]
+             }
+            },
+            "description": "Optionally provide a templated payload. Overrides 'Message' and 'Title' field.",
+            "description_kind": "markdown"
+           },
+           "max_items": 1,
+           "nesting_mode": "set"
+          }
+         },
+         "description": "A contact point that sends notifications to an arbitrary webhook, using the Prometheus webhook format defined here: https://prometheus.io/docs/alerting/latest/configuration/#webhook_config",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       },
+       "wecom": {
+        "block": {
+         "attributes": {
+          "agent_id": {
+           "description": "Agent ID added to the request payload when using APIAPP.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "corp_id": {
+           "description": "Corp ID used to get token when using APIAPP.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "disable_resolve_message": {
+           "description": "Whether to disable sending resolve messages. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "message": {
+           "description": "The templated content of the message to send.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "msg_type": {
+           "description": "The type of them message. Supported: markdown, text. Default: text.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "secret": {
+           "description": "The secret key required to obtain access token when using APIAPP. See https://work.weixin.qq.com/wework_admin/frame#apps to create APIAPP.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          },
+          "settings": {
+           "description": "Additional custom properties to attach to the notifier. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "title": {
+           "description": "The templated title of the message to send.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "to_user": {
+           "description": "The ID of user that should receive the message. Multiple entries should be separated by '|'. Default: @all.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The UID of the contact point.",
+           "description_kind": "markdown",
+           "type": "string"
+          },
+          "url": {
+           "description": "The WeCom webhook URL. Required if using GroupRobot.",
+           "description_kind": "markdown",
+           "optional": true,
+           "sensitive": true,
+           "type": "string"
+          }
+         },
+         "description": "A contact point that sends notifications to WeCom.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "set"
+       }
+      },
+      "description": "\nManages Grafana Alerting contact points.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/terraform-provisioning/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/alerting_provisioning/#contact-points)\n\nThis resource requires Grafana 9.1.0 or later.\n",
+      "description_kind": "markdown"
+     },
+     "version": 0
+    },
+    "grafana_dashboard": {
+     "block": {
+      "attributes": {
+       "config_json": {
+        "description": "The complete dashboard model JSON.\n\nStarting with Grafana v13, use the resource corresponding to your dashboard's API version for Kubernetes-style dashboards.\n\nIf you decide to use this legacy resource with a Kubernetes-style dashboard definition:\n- In Grafana v12, provide the \"spec\" field of the dashboard definition.\n- In Grafana v13 and later, provide the full Kubernetes-style dashboard JSON (including \"apiVersion\", \"kind\", \"metadata\", and \"spec\").",
+        "description_kind": "markdown",
+        "required": true,
+        "type": "string"
+       },
+       "dashboard_id": {
+        "computed": true,
+        "description": "The numeric ID of the dashboard computed by Grafana.",
+        "description_kind": "markdown",
+        "type": "number"
+       },
+       "folder": {
+        "description": "The id or UID of the folder to save the dashboard in.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "id": {
+        "computed": true,
+        "description_kind": "plain",
+        "optional": true,
+        "type": "string"
+       },
+       "message": {
+        "description": "Set a commit message for the version history.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "org_id": {
+        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "overwrite": {
+        "description": "Set to true if you want to overwrite existing dashboard with newer version, same dashboard title in folder or same dashboard uid.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "bool"
+       },
+       "uid": {
+        "computed": true,
+        "description": "The unique identifier of a dashboard. This is used to construct its URL. It's automatically generated if not provided when creating a dashboard. The uid allows having consistent URLs for accessing dashboards and when syncing dashboards between multiple Grafana installs.",
+        "description_kind": "markdown",
+        "type": "string"
+       },
+       "url": {
+        "computed": true,
+        "description": "The full URL of the dashboard.",
+        "description_kind": "markdown",
+        "type": "string"
+       },
+       "version": {
+        "computed": true,
+        "description": "Whenever you save a version of your dashboard, a copy of that version is saved so that previous versions of your dashboard are not lost.",
+        "description_kind": "markdown",
+        "type": "number"
+       }
+      },
+      "description": "\nManages Grafana dashboards.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/)\n* [HTTP API (legacy API, recommended for Grafana 12 or earlier)](https://grafana.com/docs/grafana/v11.6/developers/http_api/dashboard/)\n* [HTTP API (new Kubernetes-style API, recommended for Grafana 13 and later)](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)\n",
+      "description_kind": "markdown"
+     },
+     "version": 1
+    },
+    "grafana_data_source": {
+     "block": {
+      "attributes": {
+       "access_mode": {
+        "description": "The method by which Grafana will access the data source: `proxy` or `direct`. Defaults to `proxy`.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "basic_auth_enabled": {
+        "description": "Whether to enable basic auth for the data source. Defaults to `false`.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "bool"
+       },
+       "basic_auth_username": {
+        "description": "Basic auth username. Defaults to ``.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "database_name": {
+        "description": "(Required by some data source types) The name of the database to use on the selected data source server. Defaults to ``.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "http_headers": {
+        "description": "Custom HTTP headers",
+        "description_kind": "markdown",
+        "optional": true,
+        "sensitive": true,
+        "type": [
+         "map",
+         "string"
+        ]
+       },
+       "id": {
+        "computed": true,
+        "description_kind": "plain",
+        "optional": true,
+        "type": "string"
+       },
+       "is_default": {
+        "description": "Whether to set the data source as default. This should only be `true` to a single data source. Defaults to `false`.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "bool"
+       },
+       "json_data_encoded": {
+        "description": "Serialized JSON string containing the json data. This attribute can be used to pass configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "name": {
+        "description": "A unique name for the data source.",
+        "description_kind": "markdown",
+        "required": true,
+        "type": "string"
+       },
+       "org_id": {
+        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "private_data_source_connect_network_id": {
+        "description": "(Can only be used with data sources in Grafana Cloud) The ID of the Private Data source Connect network to use with this data source. Defaults to ``.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "secure_json_data_encoded": {
+        "description": "Serialized JSON string containing the secure json data. This attribute can be used to pass secure configuration options to the data source. To figure out what options a datasource has available, see its docs or inspect the network data when saving it from the Grafana UI. Note that keys in this map are usually camelCased.",
+        "description_kind": "markdown",
+        "optional": true,
+        "sensitive": true,
+        "type": "string"
+       },
+       "type": {
+        "description": "The data source type. Must be one of the supported data source keywords.",
+        "description_kind": "markdown",
+        "required": true,
+        "type": "string"
+       },
+       "uid": {
+        "computed": true,
+        "description": "Unique identifier. If unset, this will be automatically generated.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "url": {
+        "description": "The URL for the data source. The type of URL required varies depending on the chosen data source type.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "username": {
+        "description": "(Required by some data source types) The username to use to authenticate to the data source. Defaults to ``.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       }
+      },
+      "description": "\n* [Official documentation](https://grafana.com/docs/grafana/latest/datasources/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/data_source/)\n\nThe required arguments for this resource vary depending on the type of data\nsource selected (via the 'type' argument).\n",
+      "description_kind": "markdown"
+     },
+     "version": 1
+    },
+    "grafana_folder": {
+     "block": {
+      "attributes": {
+       "id": {
+        "computed": true,
+        "description_kind": "plain",
+        "optional": true,
+        "type": "string"
+       },
+       "org_id": {
+        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "parent_folder_uid": {
+        "description": "The uid of the parent folder. If set, the folder will be nested. If not set, the folder will be created in the root folder. Note: This requires the nestedFolders feature flag to be enabled on your Grafana instance.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "prevent_destroy_if_not_empty": {
+        "description": "Prevent deletion of the folder if it is not empty (contains dashboards or alert rules). This feature requires Grafana 10.2 or later. Defaults to `false`.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "bool"
+       },
+       "title": {
+        "description": "The title of the folder.",
+        "description_kind": "markdown",
+        "required": true,
+        "type": "string"
+       },
+       "uid": {
+        "computed": true,
+        "description": "Unique identifier.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "url": {
+        "computed": true,
+        "description": "The full URL of the folder.",
+        "description_kind": "markdown",
+        "type": "string"
+       }
+      },
+      "description": "\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/folder/)\n",
+      "description_kind": "markdown"
+     },
+     "version": 0
+    },
+    "grafana_library_panel": {
+     "block": {
+      "attributes": {
+       "created": {
+        "computed": true,
+        "description": "Timestamp when the library panel was created.",
+        "description_kind": "markdown",
+        "type": "string"
+       },
+       "dashboard_ids": {
+        "computed": true,
+        "description": "Numerical IDs of Grafana dashboards containing the library panel.",
+        "description_kind": "markdown",
+        "type": [
+         "list",
+         "number"
+        ]
+       },
+       "description": {
+        "computed": true,
+        "description": "Description of the library panel.",
+        "description_kind": "markdown",
+        "type": "string"
+       },
+       "folder_name": {
+        "computed": true,
+        "description": "Name of the folder containing the library panel.",
+        "description_kind": "markdown",
+        "type": "string"
+       },
+       "folder_uid": {
+        "description": "Unique ID (UID) of the folder containing the library panel.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "id": {
+        "computed": true,
+        "description_kind": "plain",
+        "optional": true,
+        "type": "string"
+       },
+       "model_json": {
+        "description": "The JSON model for the library panel.",
+        "description_kind": "markdown",
+        "required": true,
+        "type": "string"
+       },
+       "name": {
+        "description": "Name of the library panel.",
+        "description_kind": "markdown",
+        "required": true,
+        "type": "string"
+       },
+       "org_id": {
+        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "panel_id": {
+        "computed": true,
+        "description": "The numeric ID of the library panel computed by Grafana.",
+        "description_kind": "markdown",
+        "type": "number"
+       },
+       "type": {
+        "computed": true,
+        "description": "Type of the library panel (eg. text).",
+        "description_kind": "markdown",
+        "type": "string"
+       },
+       "uid": {
+        "computed": true,
+        "description": "The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It\u2019s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "updated": {
+        "computed": true,
+        "description": "Timestamp when the library panel was last modified.",
+        "description_kind": "markdown",
+        "type": "string"
+       },
+       "version": {
+        "computed": true,
+        "description": "Version of the library panel.",
+        "description_kind": "markdown",
+        "type": "number"
+       }
+      },
+      "description": "\nManages Grafana library panels.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/library_element/)\n",
+      "description_kind": "markdown"
+     },
+     "version": 0
+    },
+    "grafana_message_template": {
+     "block": {
+      "attributes": {
+       "disable_provenance": {
+        "computed": true,
+        "description": "Allow modifying the message template from other sources than Terraform or the Grafana API. Defaults to `false`.",
+        "description_kind": "plain",
+        "optional": true,
+        "type": "bool"
+       },
+       "id": {
+        "computed": true,
+        "description": "The ID of this resource.",
+        "description_kind": "plain",
+        "type": "string"
+       },
+       "name": {
+        "description": "The name of the notification template group.",
+        "description_kind": "plain",
+        "required": true,
+        "type": "string"
+       },
+       "org_id": {
+        "computed": true,
+        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.",
+        "description_kind": "plain",
+        "optional": true,
+        "type": "string"
+       },
+       "template": {
+        "description": "The content of the notification template group.",
+        "description_kind": "plain",
+        "required": true,
+        "type": "string"
+       }
+      },
+      "description": "\nManages Grafana Alerting notification template groups, including notification templates.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/terraform-provisioning/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/alerting_provisioning/#notification-template-groups)\n\nThis resource requires Grafana 9.1.0 or later.\n",
+      "description_kind": "markdown"
+     },
+     "version": 0
+    },
+    "grafana_mute_timing": {
+     "block": {
+      "attributes": {
+       "disable_provenance": {
+        "description": "Allow modifying the mute timing from other sources than Terraform or the Grafana API. Defaults to `false`.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "bool"
+       },
+       "id": {
+        "computed": true,
+        "description_kind": "plain",
+        "optional": true,
+        "type": "string"
+       },
+       "name": {
+        "description": "The name of the mute timing.",
+        "description_kind": "markdown",
+        "required": true,
+        "type": "string"
+       },
+       "org_id": {
+        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       }
+      },
+      "block_types": {
+       "intervals": {
+        "block": {
+         "attributes": {
+          "days_of_month": {
+           "description": "An inclusive range of days, 1-31, within a month, e.g. \"1\" or \"14:16\". Negative values can be used to represent days counting from the end of a month, e.g. \"-1\".",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": [
+            "list",
+            "string"
+           ]
+          },
+          "location": {
+           "description": "Provides the time zone for the time interval. Must be a location in the IANA time zone database, e.g \"America/New_York\"",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "months": {
+           "description": "An inclusive range of months, either numerical or full calendar month, e.g. \"1:3\", \"december\", or \"may:august\".",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": [
+            "list",
+            "string"
+           ]
+          },
+          "weekdays": {
+           "description": "An inclusive range of weekdays, e.g. \"monday\" or \"tuesday:thursday\".",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": [
+            "list",
+            "string"
+           ]
+          },
+          "years": {
+           "description": "A positive inclusive range of years, e.g. \"2030\" or \"2025:2026\".",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": [
+            "list",
+            "string"
+           ]
+          }
+         },
+         "block_types": {
+          "times": {
+           "block": {
+            "attributes": {
+             "end": {
+              "description": "The time, in hh:mm format, of when the interval should end exclusively.",
+              "description_kind": "markdown",
+              "required": true,
+              "type": "string"
+             },
+             "start": {
+              "description": "The time, in hh:mm format, of when the interval should begin inclusively.",
+              "description_kind": "markdown",
+              "required": true,
+              "type": "string"
+             }
+            },
+            "description": "The time ranges, represented in minutes, during which to mute in a given day.",
+            "description_kind": "markdown"
+           },
+           "nesting_mode": "list"
+          }
+         },
+         "description": "The time intervals at which to mute notifications. Use an empty block to mute all the time.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "list"
+       }
+      },
+      "description": "\nManages Grafana Alerting mute timings.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/terraform-provisioning/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/alerting_provisioning/#mute-timings)\n\nThis resource requires Grafana 9.1.0 or later.\n",
+      "description_kind": "markdown"
+     },
+     "version": 0
+    },
+    "grafana_notification_policy": {
+     "block": {
+      "attributes": {
+       "contact_point": {
+        "description": "The default contact point to route all unmatched notifications to.",
+        "description_kind": "markdown",
+        "required": true,
+        "type": "string"
+       },
+       "disable_provenance": {
+        "description": "Allow modifying the notification policy from other sources than Terraform or the Grafana API. Defaults to `false`.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "bool"
+       },
+       "group_by": {
+        "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping.",
+        "description_kind": "markdown",
+        "required": true,
+        "type": [
+         "list",
+         "string"
+        ]
+       },
+       "group_interval": {
+        "description": "Minimum time interval between two notifications for the same group. Default is 5 minutes.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "group_wait": {
+        "description": "Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "id": {
+        "computed": true,
+        "description_kind": "plain",
+        "optional": true,
+        "type": "string"
+       },
+       "org_id": {
+        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "repeat_interval": {
+        "description": "Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       }
+      },
+      "block_types": {
+       "policy": {
+        "block": {
+         "attributes": {
+          "active_timings": {
+           "description": "A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": [
+            "list",
+            "string"
+           ]
+          },
+          "contact_point": {
+           "description": "The contact point to route notifications that match this rule to.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "continue": {
+           "description": "Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "group_by": {
+           "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": [
+            "list",
+            "string"
+           ]
+          },
+          "group_interval": {
+           "description": "Minimum time interval between two notifications for the same group. Default is 5 minutes.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "group_wait": {
+           "description": "Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "mute_timings": {
+           "description": "A list of time intervals to apply to alerts that match this policy to mute them for the specified time.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": [
+            "list",
+            "string"
+           ]
+          },
+          "repeat_interval": {
+           "description": "Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          }
+         },
+         "block_types": {
+          "matcher": {
+           "block": {
+            "attributes": {
+             "label": {
+              "description": "The name of the label to match against.",
+              "description_kind": "markdown",
+              "required": true,
+              "type": "string"
+             },
+             "match": {
+              "description": "The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.",
+              "description_kind": "markdown",
+              "required": true,
+              "type": "string"
+             },
+             "value": {
+              "description": "The label value to match against.",
+              "description_kind": "markdown",
+              "required": true,
+              "type": "string"
+             }
+            },
+            "description": "Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.",
+            "description_kind": "markdown"
+           },
+           "nesting_mode": "set"
+          },
+          "policy": {
+           "block": {
+            "attributes": {
+             "active_timings": {
+              "description": "A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": [
+               "list",
+               "string"
+              ]
+             },
+             "contact_point": {
+              "description": "The contact point to route notifications that match this rule to.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             },
+             "continue": {
+              "description": "Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "bool"
+             },
+             "group_by": {
+              "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": [
+               "list",
+               "string"
+              ]
+             },
+             "group_interval": {
+              "description": "Minimum time interval between two notifications for the same group. Default is 5 minutes.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             },
+             "group_wait": {
+              "description": "Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             },
+             "mute_timings": {
+              "description": "A list of time intervals to apply to alerts that match this policy to mute them for the specified time.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": [
+               "list",
+               "string"
+              ]
+             },
+             "repeat_interval": {
+              "description": "Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             }
+            },
+            "block_types": {
+             "matcher": {
+              "block": {
+               "attributes": {
+                "label": {
+                 "description": "The name of the label to match against.",
+                 "description_kind": "markdown",
+                 "required": true,
+                 "type": "string"
+                },
+                "match": {
+                 "description": "The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.",
+                 "description_kind": "markdown",
+                 "required": true,
+                 "type": "string"
+                },
+                "value": {
+                 "description": "The label value to match against.",
+                 "description_kind": "markdown",
+                 "required": true,
+                 "type": "string"
+                }
+               },
+               "description": "Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.",
+               "description_kind": "markdown"
+              },
+              "nesting_mode": "set"
+             },
+             "policy": {
+              "block": {
+               "attributes": {
+                "active_timings": {
+                 "description": "A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later",
+                 "description_kind": "markdown",
+                 "optional": true,
+                 "type": [
+                  "list",
+                  "string"
+                 ]
+                },
+                "contact_point": {
+                 "description": "The contact point to route notifications that match this rule to.",
+                 "description_kind": "markdown",
+                 "optional": true,
+                 "type": "string"
+                },
+                "continue": {
+                 "description": "Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.",
+                 "description_kind": "markdown",
+                 "optional": true,
+                 "type": "bool"
+                },
+                "group_by": {
+                 "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.",
+                 "description_kind": "markdown",
+                 "optional": true,
+                 "type": [
+                  "list",
+                  "string"
+                 ]
+                },
+                "group_interval": {
+                 "description": "Minimum time interval between two notifications for the same group. Default is 5 minutes.",
+                 "description_kind": "markdown",
+                 "optional": true,
+                 "type": "string"
+                },
+                "group_wait": {
+                 "description": "Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.",
+                 "description_kind": "markdown",
+                 "optional": true,
+                 "type": "string"
+                },
+                "mute_timings": {
+                 "description": "A list of time intervals to apply to alerts that match this policy to mute them for the specified time.",
+                 "description_kind": "markdown",
+                 "optional": true,
+                 "type": [
+                  "list",
+                  "string"
+                 ]
+                },
+                "repeat_interval": {
+                 "description": "Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.",
+                 "description_kind": "markdown",
+                 "optional": true,
+                 "type": "string"
+                }
+               },
+               "block_types": {
+                "matcher": {
+                 "block": {
+                  "attributes": {
+                   "label": {
+                    "description": "The name of the label to match against.",
+                    "description_kind": "markdown",
+                    "required": true,
+                    "type": "string"
+                   },
+                   "match": {
+                    "description": "The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.",
+                    "description_kind": "markdown",
+                    "required": true,
+                    "type": "string"
+                   },
+                   "value": {
+                    "description": "The label value to match against.",
+                    "description_kind": "markdown",
+                    "required": true,
+                    "type": "string"
+                   }
+                  },
+                  "description": "Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.",
+                  "description_kind": "markdown"
+                 },
+                 "nesting_mode": "set"
+                },
+                "policy": {
+                 "block": {
+                  "attributes": {
+                   "active_timings": {
+                    "description": "A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "type": [
+                     "list",
+                     "string"
+                    ]
+                   },
+                   "contact_point": {
+                    "description": "The contact point to route notifications that match this rule to.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "type": "string"
+                   },
+                   "continue": {
+                    "description": "Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "type": "bool"
+                   },
+                   "group_by": {
+                    "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "type": [
+                     "list",
+                     "string"
+                    ]
+                   },
+                   "group_interval": {
+                    "description": "Minimum time interval between two notifications for the same group. Default is 5 minutes.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "type": "string"
+                   },
+                   "group_wait": {
+                    "description": "Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "type": "string"
+                   },
+                   "mute_timings": {
+                    "description": "A list of time intervals to apply to alerts that match this policy to mute them for the specified time.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "type": [
+                     "list",
+                     "string"
+                    ]
+                   },
+                   "repeat_interval": {
+                    "description": "Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.",
+                    "description_kind": "markdown",
+                    "optional": true,
+                    "type": "string"
+                   }
+                  },
+                  "block_types": {
+                   "matcher": {
+                    "block": {
+                     "attributes": {
+                      "label": {
+                       "description": "The name of the label to match against.",
+                       "description_kind": "markdown",
+                       "required": true,
+                       "type": "string"
+                      },
+                      "match": {
+                       "description": "The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.",
+                       "description_kind": "markdown",
+                       "required": true,
+                       "type": "string"
+                      },
+                      "value": {
+                       "description": "The label value to match against.",
+                       "description_kind": "markdown",
+                       "required": true,
+                       "type": "string"
+                      }
+                     },
+                     "description": "Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.",
+                     "description_kind": "markdown"
+                    },
+                    "nesting_mode": "set"
+                   },
+                   "policy": {
+                    "block": {
+                     "attributes": {
+                      "active_timings": {
+                       "description": "A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later",
+                       "description_kind": "markdown",
+                       "optional": true,
+                       "type": [
+                        "list",
+                        "string"
+                       ]
+                      },
+                      "contact_point": {
+                       "description": "The contact point to route notifications that match this rule to.",
+                       "description_kind": "markdown",
+                       "optional": true,
+                       "type": "string"
+                      },
+                      "continue": {
+                       "description": "Whether to continue matching subsequent rules if an alert matches the current rule. Otherwise, the rule will be 'consumed' by the first policy to match it.",
+                       "description_kind": "markdown",
+                       "optional": true,
+                       "type": "bool"
+                      },
+                      "group_by": {
+                       "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. Required for root policy only. If empty, the parent grouping is used.",
+                       "description_kind": "markdown",
+                       "required": true,
+                       "type": [
+                        "list",
+                        "string"
+                       ]
+                      },
+                      "group_interval": {
+                       "description": "Minimum time interval between two notifications for the same group. Default is 5 minutes.",
+                       "description_kind": "markdown",
+                       "optional": true,
+                       "type": "string"
+                      },
+                      "group_wait": {
+                       "description": "Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.",
+                       "description_kind": "markdown",
+                       "optional": true,
+                       "type": "string"
+                      },
+                      "mute_timings": {
+                       "description": "A list of time intervals to apply to alerts that match this policy to mute them for the specified time.",
+                       "description_kind": "markdown",
+                       "optional": true,
+                       "type": [
+                        "list",
+                        "string"
+                       ]
+                      },
+                      "repeat_interval": {
+                       "description": "Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.",
+                       "description_kind": "markdown",
+                       "optional": true,
+                       "type": "string"
+                      }
+                     },
+                     "block_types": {
+                      "matcher": {
+                       "block": {
+                        "attributes": {
+                         "label": {
+                          "description": "The name of the label to match against.",
+                          "description_kind": "markdown",
+                          "required": true,
+                          "type": "string"
+                         },
+                         "match": {
+                          "description": "The operator to apply when matching values of the given label. Allowed operators are `=` for equality, `!=` for negated equality, `=~` for regex equality, and `!~` for negated regex equality.",
+                          "description_kind": "markdown",
+                          "required": true,
+                          "type": "string"
+                         },
+                         "value": {
+                          "description": "The label value to match against.",
+                          "description_kind": "markdown",
+                          "required": true,
+                          "type": "string"
+                         }
+                        },
+                        "description": "Describes which labels this rule should match. When multiple matchers are supplied, an alert must match ALL matchers to be accepted by this policy. When no matchers are supplied, the rule will match all alert instances.",
+                        "description_kind": "markdown"
+                       },
+                       "nesting_mode": "set"
+                      }
+                     },
+                     "description": "Routing rules for specific label sets.",
+                     "description_kind": "markdown"
+                    },
+                    "nesting_mode": "list"
+                   }
+                  },
+                  "description": "Routing rules for specific label sets.",
+                  "description_kind": "markdown"
+                 },
+                 "nesting_mode": "list"
+                }
+               },
+               "description": "Routing rules for specific label sets.",
+               "description_kind": "markdown"
+              },
+              "nesting_mode": "list"
+             }
+            },
+            "description": "Routing rules for specific label sets.",
+            "description_kind": "markdown"
+           },
+           "nesting_mode": "list"
+          }
+         },
+         "description": "Routing rules for specific label sets.",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "list"
+       }
+      },
+      "description": "\nSets the global notification policy for Grafana.\n\n!> This resource manages the entire notification policy tree and overwrites its policies. However, it does not overwrite internal policies created when alert rules directly set a contact point for notifications.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/terraform-provisioning/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/alerting_provisioning/#notification-policies)\n\nThis resource requires Grafana 9.1.0 or later.\n",
+      "description_kind": "markdown"
+     },
+     "version": 0
+    },
+    "grafana_organization": {
+     "block": {
+      "attributes": {
+       "admin_user": {
+        "description": "The login name of the configured default admin user for the Grafana\ninstallation. If unset, this value defaults to admin, the Grafana default.\nGrafana adds the default admin user to all organizations automatically upon\ncreation, and this parameter keeps Terraform from removing it from\norganizations.\n Defaults to `admin`.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       },
+       "admins": {
+        "description": "A list of email addresses corresponding to users who should be given admin\naccess to the organization. Note: users specified here must already exist in\nGrafana unless 'create_users' is set to true.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": [
+         "set",
+         "string"
+        ]
+       },
+       "create_users": {
+        "description": "Whether or not to create Grafana users specified in the organization's\nmembership if they don't already exist in Grafana. If unspecified, this\nparameter defaults to true, creating placeholder users with the name, login,\nand email set to the email of the user, and a random password. Setting this\noption to false will cause an error to be thrown for any users that do not\nalready exist in Grafana.\n Defaults to `true`.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "bool"
+       },
+       "editors": {
+        "description": "A list of email addresses corresponding to users who should be given editor\naccess to the organization. Note: users specified here must already exist in\nGrafana unless 'create_users' is set to true.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": [
+         "set",
+         "string"
+        ]
+       },
+       "id": {
+        "computed": true,
+        "description_kind": "plain",
+        "optional": true,
+        "type": "string"
+       },
+       "name": {
+        "description": "The display name for the Grafana organization created.",
+        "description_kind": "markdown",
+        "required": true,
+        "type": "string"
+       },
+       "org_id": {
+        "computed": true,
+        "description": "The organization id assigned to this organization by Grafana.",
+        "description_kind": "markdown",
+        "type": "number"
+       },
+       "users_without_access": {
+        "description": "A list of email addresses corresponding to users who should be given none access to the organization.\nNote: users specified here must already exist in Grafana, unless 'create_users' is\nset to true. This feature is only available in Grafana 10.2+.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": [
+         "set",
+         "string"
+        ]
+       },
+       "viewers": {
+        "description": "A list of email addresses corresponding to users who should be given viewer\naccess to the organization. Note: users specified here must already exist in\nGrafana unless 'create_users' is set to true.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": [
+         "set",
+         "string"
+        ]
+       }
+      },
+      "description": "\n* [Official documentation](https://grafana.com/docs/grafana/latest/administration/organization-management/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/org/)\n\nThis resource represents an instance-scoped resource and uses Grafana's admin APIs.\nIt does not work with API tokens or service accounts which are org-scoped.\nYou must use basic auth. \nThis resource is also not compatible with Grafana Cloud, as it does not allow basic auth.\n",
+      "description_kind": "markdown"
+     },
+     "version": 0
+    },
+    "grafana_playlist": {
+     "block": {
+      "attributes": {
+       "id": {
+        "computed": true,
+        "description": "The ID of this resource.",
+        "description_kind": "plain",
+        "type": "string"
+       },
+       "interval": {
+        "description_kind": "plain",
+        "required": true,
+        "type": "string"
+       },
+       "name": {
+        "description": "The name of the playlist.",
+        "description_kind": "plain",
+        "required": true,
+        "type": "string"
+       },
+       "org_id": {
+        "computed": true,
+        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.",
+        "description_kind": "plain",
+        "optional": true,
+        "type": "string"
+       }
+      },
+      "block_types": {
+       "item": {
+        "block": {
+         "attributes": {
+          "id": {
+           "computed": true,
+           "description_kind": "plain",
+           "type": "string"
+          },
+          "order": {
+           "description_kind": "plain",
+           "required": true,
+           "type": "number"
+          },
+          "type": {
+           "description_kind": "plain",
+           "optional": true,
+           "type": "string"
+          },
+          "value": {
+           "description_kind": "plain",
+           "optional": true,
+           "type": "string"
+          }
+         },
+         "description_kind": "plain"
+        },
+        "nesting_mode": "set"
+       }
+      },
+      "description": "\nManages Grafana playlists.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/dashboards/create-manage-playlists/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/playlist/)\n",
+      "description_kind": "markdown"
+     },
+     "version": 0
+    },
+    "grafana_rule_group": {
+     "block": {
+      "attributes": {
+       "disable_provenance": {
+        "description": "Allow modifying the rule group from other sources than Terraform or the Grafana API. Defaults to `false`.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "bool"
+       },
+       "folder_uid": {
+        "description": "The UID of the folder that the group belongs to.",
+        "description_kind": "markdown",
+        "required": true,
+        "type": "string"
+       },
+       "id": {
+        "computed": true,
+        "description_kind": "plain",
+        "optional": true,
+        "type": "string"
+       },
+       "interval_seconds": {
+        "description": "The interval, in seconds, at which all rules in the group are evaluated. If a group contains many rules, the rules are evaluated sequentially.",
+        "description_kind": "markdown",
+        "required": true,
+        "type": "number"
+       },
+       "name": {
+        "description": "The name of the rule group.",
+        "description_kind": "markdown",
+        "required": true,
+        "type": "string"
+       },
+       "org_id": {
+        "description": "The Organization ID. If not set, the Org ID defined in the provider block will be used.",
+        "description_kind": "markdown",
+        "optional": true,
+        "type": "string"
+       }
+      },
+      "block_types": {
+       "rule": {
+        "block": {
+         "attributes": {
+          "annotations": {
+           "description": "Key-value pairs of metadata to attach to the alert rule. They add additional information, such as a `summary` or `runbook_url`, to help identify and investigate alerts. The `__dashboardUid__` and `__panelId__` annotations, which link alerts to a panel, must be set together. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "condition": {
+           "description": "The `ref_id` of the query node in the `data` field to use as the alert condition.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "exec_err_state": {
+           "description": "Describes what state to enter when the rule's query is invalid and the rule cannot be executed. Options are OK, Error, KeepLast, and Alerting.  Defaults to Alerting if not set.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "for": {
+           "description": "The amount of time for which the rule must be breached for the rule to be considered to be Firing. Before this time has elapsed, the rule is only considered to be Pending. Defaults to `0`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "is_paused": {
+           "description": "Sets whether the alert should be paused or not. Defaults to `false`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "bool"
+          },
+          "keep_firing_for": {
+           "description": "The amount of time for which the rule will considered to be Recovering after initially Firing. Before this time has elapsed, the rule will continue to fire once it's been triggered.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "labels": {
+           "description": "Key-value pairs to attach to the alert rule that can be used in matching, grouping, and routing. Defaults to `map[]`.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": [
+            "map",
+            "string"
+           ]
+          },
+          "missing_series_evals_to_resolve": {
+           "description": "The number of missing series evaluations that must occur before the rule is considered to be resolved.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "number"
+          },
+          "name": {
+           "description": "The name of the alert rule.",
+           "description_kind": "markdown",
+           "required": true,
+           "type": "string"
+          },
+          "no_data_state": {
+           "description": "Describes what state to enter when the rule's query returns No Data. Options are OK, NoData, KeepLast, and Alerting. Defaults to NoData if not set.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          },
+          "uid": {
+           "computed": true,
+           "description": "The unique identifier of the alert rule.",
+           "description_kind": "markdown",
+           "optional": true,
+           "type": "string"
+          }
+         },
+         "block_types": {
+          "data": {
+           "block": {
+            "attributes": {
+             "datasource_uid": {
+              "description": "The UID of the datasource being queried, or \"-100\" if this stage is an expression stage.",
+              "description_kind": "markdown",
+              "required": true,
+              "type": "string"
+             },
+             "model": {
+              "description": "Custom JSON data to send to the specified datasource when querying.",
+              "description_kind": "markdown",
+              "required": true,
+              "type": "string"
+             },
+             "query_type": {
+              "description": "An optional identifier for the type of query being executed. Defaults to ``.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             },
+             "ref_id": {
+              "description": "A unique string to identify this query stage within a rule.",
+              "description_kind": "markdown",
+              "required": true,
+              "type": "string"
+             }
+            },
+            "block_types": {
+             "relative_time_range": {
+              "block": {
+               "attributes": {
+                "from": {
+                 "description": "The number of seconds in the past, relative to when the rule is evaluated, at which the time range begins.",
+                 "description_kind": "markdown",
+                 "required": true,
+                 "type": "number"
+                },
+                "to": {
+                 "description": "The number of seconds in the past, relative to when the rule is evaluated, at which the time range ends.",
+                 "description_kind": "markdown",
+                 "required": true,
+                 "type": "number"
+                }
+               },
+               "description": "The time range, relative to when the query is executed, across which to query.",
+               "description_kind": "markdown"
+              },
+              "max_items": 1,
+              "min_items": 1,
+              "nesting_mode": "list"
+             }
+            },
+            "description": "A sequence of stages that describe the contents of the rule.",
+            "description_kind": "markdown"
+           },
+           "min_items": 1,
+           "nesting_mode": "list"
+          },
+          "notification_settings": {
+           "block": {
+            "attributes": {
+             "active_timings": {
+              "description": "A list of time interval names to apply to alerts that match this policy to suppress them unless they are sent at the specified time. Supported in Grafana 12.1.0 and later",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": [
+               "list",
+               "string"
+              ]
+             },
+             "contact_point": {
+              "description": "The contact point to route notifications that match this rule to. Exactly one of `contact_point` or `policy` must be set.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             },
+             "group_by": {
+              "description": "A list of alert labels to group alerts into notifications by. Use the special label `...` to group alerts by all labels, effectively disabling grouping. If empty, no grouping is used. If specified, requires labels 'alertname' and 'grafana_folder' to be included.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": [
+               "list",
+               "string"
+              ]
+             },
+             "group_interval": {
+              "description": "Minimum time interval between two notifications for the same group. Default is 5 minutes.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             },
+             "group_wait": {
+              "description": "Time to wait to buffer alerts of the same group before sending a notification. Default is 30 seconds.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             },
+             "mute_timings": {
+              "description": "A list of mute timing names to apply to alerts that match this policy.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": [
+               "list",
+               "string"
+              ]
+             },
+             "policy": {
+              "description": "The name of the notification policy to route notifications that match this rule through. Mutually exclusive with `contact_point` and all other fields in this block. Exactly one of `contact_point` or `policy` must be set.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             },
+             "repeat_interval": {
+              "description": "Minimum time interval for re-sending a notification if an alert is still firing. Default is 4 hours.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             }
+            },
+            "description": "Notification settings for the rule. If specified, it overrides the notification policies. Available since Grafana 10.4, requires feature flag 'alertingSimplifiedRouting' to be enabled.",
+            "description_kind": "markdown"
+           },
+           "max_items": 1,
+           "nesting_mode": "list"
+          },
+          "record": {
+           "block": {
+            "attributes": {
+             "from": {
+              "description": "The ref id of the query node in the data field to use as the source of the metric.",
+              "description_kind": "markdown",
+              "required": true,
+              "type": "string"
+             },
+             "metric": {
+              "description": "The name of the metric to write to.",
+              "description_kind": "markdown",
+              "required": true,
+              "type": "string"
+             },
+             "target_datasource_uid": {
+              "description": "The UID of the datasource to write the metric to.",
+              "description_kind": "markdown",
+              "optional": true,
+              "type": "string"
+             }
+            },
+            "description": "Settings for a recording rule. Available since Grafana 11.2, requires feature flag 'grafanaManagedRecordingRules' to be enabled.",
+            "description_kind": "markdown"
+           },
+           "max_items": 1,
+           "nesting_mode": "list"
+          }
+         },
+         "description": "The rules within the group.",
+         "description_kind": "markdown"
+        },
+        "min_items": 1,
+        "nesting_mode": "list"
+       }
+      },
+      "description": "\nManages Grafana Alerting rule groups.\n\n* [Official documentation](https://grafana.com/docs/grafana/latest/alerting/set-up/provision-alerting-resources/terraform-provisioning/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/alerting_provisioning/#alert-rules)\n\nThis resource requires Grafana 9.1.0 or later.\n",
+      "description_kind": "markdown"
+     },
+     "version": 0
+    },
+    "grafana_team": {
+     "block": {
+      "attributes": {
+       "admins": {
+        "computed": true,
+        "description": "A set of email addresses corresponding to users who should be given administrator membership to the team. Note: users specified here must already exist in Grafana. When omitted after being set, users moved into `members` are demoted; administrators only present in state (for example from the UI) are preserved until `admins` is set explicitly, including to `[]`.",
+        "description_kind": "plain",
+        "optional": true,
+        "type": [
+         "set",
+         "string"
+        ]
+       },
+       "email": {
+        "computed": true,
+        "description": "An email address for the team.",
+        "description_kind": "plain",
+        "optional": true,
+        "type": "string"
+       },
+       "id": {
+        "computed": true,
+        "description_kind": "plain",
+        "type": "string"
+       },
+       "ignore_externally_synced_members": {
+        "computed": true,
+        "description": "Ignores team members that have been added to team by [Team Sync](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/). Team Sync can be provisioned using [grafana_team_external_group resource](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/team_external_group).",
+        "description_kind": "plain",
+        "optional": true,
+        "type": "bool"
+       },
+       "members": {
+        "computed": true,
+        "description": "A set of email addresses corresponding to users who should be given ordinary membership to the team. Use `admins` to grant team administrator rights. Note: users specified here must already exist in Grafana.",
+        "description_kind": "plain",
+        "optional": true,
+        "type": [
+         "set",
+         "string"
+        ]
+       },
+       "name": {
+        "description": "The display name for the Grafana team created.",
+        "description_kind": "plain",
+        "required": true,
+        "type": "string"
+       },
+       "org_id": {
+        "computed": true,
+        "description": "The Organization ID. If not set, the default organization is used for basic authentication, or the one that owns your service account for token authentication.",
+        "description_kind": "plain",
+        "optional": true,
+        "type": "string"
+       },
+       "team_id": {
+        "computed": true,
+        "description": "The team id assigned to this team by Grafana.",
+        "description_kind": "plain",
+        "type": "number"
+       },
+       "team_uid": {
+        "computed": true,
+        "description": "The team uid assigned to this team by Grafana.",
+        "description_kind": "plain",
+        "type": "string"
+       }
+      },
+      "block_types": {
+       "preferences": {
+        "block": {
+         "attributes": {
+          "home_dashboard_uid": {
+           "computed": true,
+           "description": "The UID of the dashboard to display when a team member logs in.",
+           "description_kind": "plain",
+           "optional": true,
+           "type": "string"
+          },
+          "theme": {
+           "computed": true,
+           "description": "The default theme for this team. Available themes are `light`, `dark`, `system`, or an empty string for the default theme.",
+           "description_kind": "plain",
+           "optional": true,
+           "type": "string"
+          },
+          "timezone": {
+           "computed": true,
+           "description": "The default timezone for this team. Available values are `utc`, `browser`, or an empty string for the default.",
+           "description_kind": "plain",
+           "optional": true,
+           "type": "string"
+          },
+          "week_start": {
+           "computed": true,
+           "description": "The default week start day for this team. Available values are `sunday`, `monday`, `saturday`, or an empty string for the default.",
+           "description_kind": "plain",
+           "optional": true,
+           "type": "string"
+          }
+         },
+         "description_kind": "plain"
+        },
+        "nesting_mode": "list"
+       },
+       "team_sync": {
+        "block": {
+         "attributes": {
+          "groups": {
+           "description_kind": "plain",
+           "optional": true,
+           "type": [
+            "set",
+            "string"
+           ]
+          }
+         },
+         "description": "Sync external auth provider groups with this Grafana team. Only available in Grafana Enterprise.\n* [Official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-team-sync/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team_sync/)",
+         "description_kind": "markdown"
+        },
+        "nesting_mode": "list"
+       }
+      },
+      "description": "\n* [Official documentation](https://grafana.com/docs/grafana/latest/administration/team-management/)\n* [HTTP API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/team/)\n",
+      "description_kind": "markdown"
+     },
+     "version": 0
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,25 @@
+# Release archives in the layout gitopsify installs from:
+# gitopsify-provider-grafana_<version>_<os>_<arch>.tar.gz (.zip on Windows)
+# and a checksums file.
+version: 2
+project_name: gitopsify-provider-grafana
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - env: [CGO_ENABLED=0]
+    goos: [linux, darwin, windows]
+    goarch: [amd64, arm64]
+    ldflags: ["-s -w -X main.version={{ .Tag }}"]
+    binary: gitopsify-provider-grafana
+archives:
+  - formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files: [LICENSE, README.md]
+checksum:
+  name_template: "{{ .ProjectName }}_{{ .Version }}_checksums.txt"
+changelog:
+  use: github

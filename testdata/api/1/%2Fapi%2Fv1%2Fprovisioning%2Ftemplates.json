@@ -1,0 +1,1 @@
+[{"name":"slack.title","template":"{{ define \"slack.title\" }}[{{ .Status | toUpper }}] {{ .CommonLabels.alertname }}{{ end }}","provenance":"api","version":"991aa3813c85ec4b"},{"name":"ui.footer","template":"{{ define \"ui.footer\" }}Sent by Grafana{{ end }}","version":"a190254e01d1b409"}]

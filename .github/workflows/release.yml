@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: No replace directives
+        run: |
+          if go mod edit -json | jq -e '.Replace // [] | length > 0' >/dev/null; then
+            echo "::error::go.mod replaces the SDK; require a tagged github.com/hayone1/gitopsify/sdk before releasing"
+            exit 1
+          fi
+      - uses: goreleaser/goreleaser-action@v6
+        with:
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Provenance for the archives (gh attestation verify).
+      - uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: dist/*.tar.gz, dist/*.zip

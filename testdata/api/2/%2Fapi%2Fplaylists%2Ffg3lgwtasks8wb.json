@@ -1,0 +1,1 @@
+{"uid":"fg3lgwtasks8wb","name":"Wallboard","interval":"5m","items":[{"type":"dashboard_by_uid","value":"k8s-overview"},{"type":"dashboard_by_tag","value":"k8s"}]}

@@ -1,0 +1,1 @@
+[{"name":"maintenance","time_intervals":[{"times":[{"start_time":"02:00","end_time":"04:00"}],"weekdays":["tuesday"]}],"version":"b1d0127ffc1278a9"},{"name":"weekends","time_intervals":[{"weekdays":["saturday","sunday"]},{"times":[{"start_time":"22:00","end_time":"23:59"}],"location":"Europe/Berlin"}],"version":"d9da4fcfe014d711","provenance":"api"}]
