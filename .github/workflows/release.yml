@@ -16,9 +16,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      # The newest Go: go.mod's go line is only the minimum.
       - uses: actions/setup-go@v5
         with:
-          go-version-file: go.mod
+          go-version: stable
       - name: No replace directives
         run: |
           if go mod edit -json | jq -e '.Replace // [] | length > 0' >/dev/null; then

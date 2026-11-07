@@ -17,6 +17,9 @@ writes as Terraform or Crossplane. Protocol and SDK:
 - Local Grafana: `docker run -d --name grafana -p 3300:3000 -e GF_SECURITY_ADMIN_PASSWORD=admin grafana/grafana:13.3.0`,
   then `GRAFANA_URL=http://localhost:3300 GRAFANA_AUTH=admin:admin test/live/seed.sh`
 - `make record` after changing what the provider reads (re-records testdata/api)
+- `make upstream` after bumping the pinned upstream versions or adding a kind
+  (refreshes testdata/upstream; `tools/upstream` is a copy of the template's,
+  keep them in sync)
 - `make live`: the full live test (kind + Crossplane + Terraform + OpenTofu) on a throwaway Hetzner machine
 
 ## Where things are

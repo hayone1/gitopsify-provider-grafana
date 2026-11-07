@@ -1,0 +1,2 @@
+terraform grafana/grafana 4.53.0 (constraint ~> 4.53)
+crossplane xpkg.upbound.io/grafana/provider-grafana:v2.17.0

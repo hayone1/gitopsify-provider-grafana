@@ -14,15 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # Until the SDK has tagged releases, build against gitopsify's checkout
-      # (go.mod replaces the SDK with ../gitopsify/sdk).
+      # Until the SDK has a tagged release, go.mod replaces it with
+      # ../gitopsify/sdk: check out that gitopsify commit next to this
+      # repository. Remove these two steps once go.mod requires sdk/vX.Y.Z.
       - uses: actions/checkout@v4
         with:
           repository: hayone1/gitopsify
+          ref: ff9300179b19dafde3aaac7893c74c68f8b84e22
           path: _gitopsify
-          token: ${{ secrets.GITOPSIFY_READ_TOKEN || github.token }}
       - run: mv _gitopsify ../gitopsify
+      # The newest Go: go.mod's go line is only the minimum.
       - uses: actions/setup-go@v5
         with:
-          go-version-file: go.mod
+          go-version: stable
       - run: make lint test build

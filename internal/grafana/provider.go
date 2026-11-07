@@ -264,8 +264,7 @@ func (r *run) emit(res sdk.Resource) error {
 		return nil
 	}
 	if r.summary {
-		res.DependsOn = append(res.DependsOn, refKeys(res.Attributes)...)
-		res.Attributes = nil
+		res = res.Summary()
 	}
 	return r.out.Resource(res)
 }
@@ -277,23 +276,6 @@ func (r *run) skip(o org, k, kind, name, reason string) error {
 		return nil
 	}
 	return r.out.Skip(sdk.Skipped{Kind: kind, Partition: strconv.FormatInt(o.ID, 10), Name: name, Reason: reason})
-}
-
-func refKeys(v any) []string {
-	var out []string
-	switch t := v.(type) {
-	case sdk.RefValue:
-		out = append(out, t.Ref)
-	case map[string]any:
-		for _, e := range t {
-			out = append(out, refKeys(e)...)
-		}
-	case []any:
-		for _, e := range t {
-			out = append(out, refKeys(e)...)
-		}
-	}
-	return out
 }
 
 // orgAttrs adds org_id (a reference to the organization) when the session can

@@ -6,8 +6,9 @@ build:
 	CGO_ENABLED=0 go build -ldflags "-s -w -X main.version=$(VERSION)" -o bin/gitopsify-provider-grafana .
 
 # gitopsify finds providers on PATH: this is how to try a change.
+GOBIN_DIR = $(or $(shell go env GOBIN),$(shell go env GOPATH)/bin)
 install:
-	CGO_ENABLED=0 go install -ldflags "-X main.version=$(VERSION)" .
+	CGO_ENABLED=0 go build -ldflags "-X main.version=$(VERSION)" -o "$(GOBIN_DIR)/gitopsify-provider-grafana" .
 
 test:
 	go test ./...
@@ -17,13 +18,16 @@ lint:
 	gofmt -l . | (! grep .)
 
 # Re-record testdata/api from a Grafana filled by test/live/seed.sh (see
-# testdata/README.md).
-record: build
-	rm -rf testdata/api
-	echo '{"settings":{"url":"$(or $(GRAFANA_URL),http://localhost:3300)","auth":"$(or $(GRAFANA_AUTH),admin:admin)"}}' | \
-	  GITOPSIFY_GRAFANA_RECORD=testdata/api ./bin/gitopsify-provider-grafana check >/dev/null
-	echo '{"settings":{"url":"$(or $(GRAFANA_URL),http://localhost:3300)","auth":"$(or $(GRAFANA_AUTH),admin:admin)"}}' | \
-	  GITOPSIFY_GRAFANA_RECORD=testdata/api ./bin/gitopsify-provider-grafana discover >/dev/null
+# testdata/README.md), with GRAFANA_URL and GRAFANA_AUTH set. testdata/api
+# changes only when everything could be read.
+record:
+	go run ./tools/record
+
+# Refresh testdata/upstream (the Terraform schema and the Crossplane CRDs)
+# from the versions pinned in internal/grafana/kinds.go. Needs terraform
+# (TF=tofu for OpenTofu); runs crane through Go when it isn't installed.
+upstream:
+	go run ./tools/upstream
 
 # Live test on a throwaway Hetzner machine (needs ../gitopsify and its .env).
 live:

@@ -1,9 +1,10 @@
 # Handoff: gitopsify-provider-grafana
 
-State as of 2026-11-07. New repository, nothing committed yet (local `git init`
-only; no GitHub repository exists). Builds against the sibling `../gitopsify`
-checkout (branch `providers`, also uncommitted) through a `replace` directive
-until the SDK is tagged.
+State as of 2026-11-07. github.com/hayone1/gitopsify-provider-grafana
+(private). Built from the same layout as
+github.com/hayone1/gitopsify-provider-template: `tools/upstream` and
+`tools/record` are copies of the template's (only the import differs; keep
+them in sync).
 
 ## What it is
 The first gitopsify provider: `gitopsify-provider-grafana` reads a Grafana over
@@ -20,7 +21,8 @@ its HTTP API and describes it as grafana/grafana Terraform resources (pinned
   token, retries + Retry-After, TLS/ca_cert, record mode), `oss.go`,
   `alerting.go` (one reader per kind).
 - `testdata/api/` recorded answers (`make record` against a seeded Grafana),
-  `testdata/upstream/` trimmed Terraform schema and CRDs.
+  `testdata/upstream/` trimmed Terraform schema and CRDs (`make upstream`,
+  tools/upstream: a copy of gitopsify-provider-template's).
 - `test/live/seed.sh` (3 orgs; API-made and UI-made alerting objects, team
   preferences, a v2 dashboard), `test/live/crossplane.sh` (live test).
 
@@ -41,9 +43,14 @@ its HTTP API and describes it as grafana/grafana Terraform resources (pinned
 - Three rounds of fresh-context review; the last one found nothing blocking.
 
 ## Open / next
-1. Create github.com/hayone1/gitopsify-provider-grafana, push, tag v0.1.0
-   after the SDK is tagged and the replace directive dropped; add its
-   `repoId` to `../gitopsify/providers/index.yaml`.
+1. Tag v0.1.0 once go.mod requires a tagged SDK (no replace directive); add
+   the repository's `repoId` to `../gitopsify/providers/index.yaml`. Make the
+   repository public first (installs need it).
+   Known: `fixtureName` uses url.PathEscape, which keeps `:` (invalid on
+   Windows and in Go module zips); no current fixture has one. Switch to the
+   template's `FixtureName` (and rename testdata/api) when re-recording.
+   `tools/record` is untested against a real Grafana (the template's copy is
+   tested); the next `make record` is its first real run.
 2. Contact points with settings the provider doesn't map are skipped whole:
    map more integrations (pagerduty, teams, discord, opsgenie, telegram...),
    and put string-valued unknown settings into Terraform's sensitive

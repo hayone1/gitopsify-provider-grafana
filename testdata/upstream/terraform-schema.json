@@ -2257,7 +2257,7 @@
        },
        "uid": {
         "computed": true,
-        "description": "The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It\u2019s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.",
+        "description": "The unique identifier (UID) of a library panel uniquely identifies library panels between multiple Grafana installs. It’s automatically generated unless you specify it during library panel creation.The UID provides consistent URLs for accessing library panels and when syncing library panels between multiple Grafana installs.",
         "description_kind": "markdown",
         "optional": true,
         "type": "string"

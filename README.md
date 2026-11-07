@@ -58,6 +58,7 @@ The variables are the Terraform provider's, so the same environment runs
 ```sh
 make build test lint
 make install                              # on PATH, where gitopsify finds it
+make upstream                             # refresh testdata/upstream after bumping the pinned upstream versions
 make live                                 # Grafana + kind + Crossplane + Terraform + OpenTofu on a throwaway Hetzner machine
 ```
 
