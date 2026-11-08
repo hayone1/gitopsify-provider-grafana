@@ -1,7 +1,7 @@
 # Handoff: gitopsify-provider-grafana
 
-State as of 2026-11-07. github.com/hayone1/gitopsify-provider-grafana
-(private). Built from the same layout as
+State as of 2026-11-08. github.com/hayone1/gitopsify-provider-grafana
+(public), requires github.com/hayone1/gitopsify/sdk v0.1.0. Built from the same layout as
 github.com/hayone1/gitopsify-provider-template: `tools/upstream` and
 `tools/record` are copies of the template's (only the import differs; keep
 them in sync).
@@ -43,9 +43,8 @@ its HTTP API and describes it as grafana/grafana Terraform resources (pinned
 - Three rounds of fresh-context review; the last one found nothing blocking.
 
 ## Open / next
-1. Tag v0.1.0 once go.mod requires a tagged SDK (no replace directive); add
-   the repository's `repoId` to `../gitopsify/providers/index.yaml`. Make the
-   repository public first (installs need it).
+1. Tag v0.1.0 (go.mod requires sdk v0.1.0; the repository is public); add
+   the repository's `repoId` to `../gitopsify/providers/index.yaml`.
    Known: `fixtureName` uses url.PathEscape, which keeps `:` (invalid on
    Windows and in Go module zips); no current fixture has one. Switch to the
    template's `FixtureName` (and rename testdata/api) when re-recording.
